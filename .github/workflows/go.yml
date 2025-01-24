@@ -9,11 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: ['1.18', '1.19', '1.20', '1.21', '1.22']
+        go: ["1.18", "1.19", "1.20", "1.21", "1.22"]
 
     name: build and vet
     steps:
-
       - uses: actions/checkout@v2
         with:
           path: go/src/github.com/vbatts/tar-split

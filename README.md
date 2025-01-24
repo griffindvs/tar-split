@@ -10,9 +10,9 @@ Pristinely disassembling a tar archive, and stashing needed raw bytes and offset
 
 Code API for libraries provided by `tar-split`:
 
-* [github.com/vbatts/tar-split/tar/asm](https://pkg.go.dev/github.com/vbatts/tar-split/tar/asm)
-* [github.com/vbatts/tar-split/tar/storage](https://pkg.go.dev/github.com/vbatts/tar-split/tar/storage)
-* [github.com/vbatts/tar-split/archive/tar](https://pkg.go.dev/github.com/vbatts/tar-split/archive/tar)
+- [github.com/vbatts/tar-split/tar/asm](https://pkg.go.dev/github.com/vbatts/tar-split/tar/asm)
+- [github.com/vbatts/tar-split/tar/storage](https://pkg.go.dev/github.com/vbatts/tar-split/tar/storage)
+- [github.com/vbatts/tar-split/archive/tar](https://pkg.go.dev/github.com/vbatts/tar-split/archive/tar)
 
 ## Install
 
@@ -32,7 +32,6 @@ For the library see the [docs](#docs)
 ### Basic disassembly and assembly
 
 This demonstrates the `tar-split` command and how to assemble a tar archive from the `tar-data.json.gz`
-
 
 ![basic cmd demo thumbnail](https://i.ytimg.com/vi/vh5wyjIOBtc/2.jpg?time=1445027151805)
 [youtube video of basic command demo](https://youtu.be/vh5wyjIOBtc)
@@ -56,7 +55,6 @@ is not something I seek to fix immediately, but would rather have an alert that
 precise reassembly is not possible.
 (see more http://www.gnu.org/software/tar/manual/html_node/Sparse-Formats.html)
 
-
 Other caveat, while tar archives support having multiple file entries for the
 same path, we will not support this feature. If there are more than one entries
 with the same path, expect an err (like `ErrDuplicatePath`) or a resulting tar
@@ -70,7 +68,6 @@ Do not break the API of stdlib `archive/tar` in our fork (ideally find an upstre
 
 The version of golang stdlib `archive/tar` is from go1.11
 It is minimally extended to expose the raw bytes of the TAR, rather than just the marshalled headers and file stream.
-
 
 ## Design
 
@@ -109,7 +106,7 @@ But let's look at a larger archive, with many files.
 ```bash
 $ ls -sh ./d.tar
 1.4G ./d.tar
-$ tar-split checksize ~/d.tar 
+$ tar-split checksize ~/d.tar
 inspecting "/home/vbatts/d.tar" (size 1420749k)
  -- number of files: 38718
  -- size of metadata uncompressed: 43261k
@@ -121,17 +118,15 @@ Here, an archive with 38,718 files has a compressed footprint of about 2mb.
 Rolling the null bytes on the end of the archive, we will assume a
 bytes-per-file rate for the storage implications.
 
-| uncompressed | compressed |
-| :----------: | :--------: |
+|  uncompressed  |   compressed    |
+| :------------: | :-------------: |
 | ~ 1kb per/file | 0.06kb per/file |
-
 
 ## What's Next?
 
-* More implementations of storage Packer and Unpacker
-* More implementations of FileGetter and FilePutter
-* would be interesting to have an assembler stream that implements `io.Seeker`
-
+- More implementations of storage Packer and Unpacker
+- More implementations of FileGetter and FilePutter
+- would be interesting to have an assembler stream that implements `io.Seeker`
 
 ## License
 

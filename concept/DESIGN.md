@@ -23,7 +23,7 @@ ID for each Reader, and keeping that information differentiated.
 Perhaps we could deduplicate the header info, by hashing the rawbytes and
 storing them in a directory tree like:
 
-	./ac/dc/beef
+    ./ac/dc/beef
 
 Then reference the hash of the header info, in the positional records for the
 tar stream. Though this could be a future feature, and not required for an
@@ -69,15 +69,15 @@ Remainder: 512
 Size: 215040; Sum: 215040
 ```
 
-*What are we seeing here?* 
+_What are we seeing here?_
 
-* `pre` is the header of a file entry, and potentially the padding from the
+- `pre` is the header of a file entry, and potentially the padding from the
   end of the prior file's payload. Also with particular tar extensions and pax
   attributes, the header can exceed 512 bytes.
-* `read` is the size of the file payload from the entry
-* `EOF padding` is the expected 1024 null bytes on the end of a tar archive,
+- `read` is the size of the file payload from the entry
+- `EOF padding` is the expected 1024 null bytes on the end of a tar archive,
   plus potential padding from the end of the prior file entry's payload
-* `Remainder` is the remaining bytes of an archive. This is typically deadspace
+- `Remainder` is the remaining bytes of an archive. This is typically deadspace
   as most tar implmentations will return after having reached the end of the
   1024 null bytes. Though various implementations will include some amount of
   bytes here, which will affect the checksum of the resulting tar archive,
@@ -90,5 +90,3 @@ $ sha1sum tar-split.tar*
 ca9e19966b892d9ad5960414abac01ef585a1e22  tar-split.tar
 ca9e19966b892d9ad5960414abac01ef585a1e22  tar-split.tar.out
 ```
-
-
